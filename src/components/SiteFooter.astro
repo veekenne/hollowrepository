@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE, AUTHORS, NAV, withBase } from '../lib/site';
+import { SITE_TITLE, SITE_TAGLINE, AUTHORS, NAV, KOFI_URL, withBase } from '../lib/site';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -15,6 +15,7 @@ const year = new Date().getFullYear();
     </div>
     <nav aria-label="Footer">
       {NAV.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      <a href={KOFI_URL} rel="noopener">Support on Ko-fi</a>
     </nav>
   </div>
 </footer>

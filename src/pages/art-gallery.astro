@@ -1,0 +1,10 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Prose from '../components/Prose.astro';
+import { getPageHtml, getPageMeta } from '../lib/content';
+const slug = 'art-gallery';
+const meta = getPageMeta(slug);
+---
+<PageLayout title={meta?.title ?? 'Art Gallery'} eyebrow="Gallery">
+  <Prose html={getPageHtml(slug)} />
+</PageLayout>

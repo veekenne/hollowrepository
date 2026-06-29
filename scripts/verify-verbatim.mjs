@@ -60,13 +60,19 @@ function compare(srcArr, outArr) {
 
 async function run() {
   const pages = JSON.parse(await readFile(path.join(ROOT, 'migration/raw/pages.json'), 'utf8'));
+  const posts = JSON.parse(await readFile(path.join(ROOT, 'migration/raw/posts.json'), 'utf8'));
   const bySlug = (arr) => new Map(arr.map((x) => [x.slug, x]));
   const pageMap = bySlug(pages);
+  const postMap = bySlug(posts);
 
   const jobs = [];
   const chapters = JSON.parse(await readFile(path.join(ROOT, 'src/data/chapters.json'), 'utf8'));
   for (const c of chapters) {
     jobs.push({ kind: 'chapter', slug: c.slug, src: pageMap.get(c.slug), dir: 'src/book/chapters' });
+  }
+  const postManifest = JSON.parse(await readFile(path.join(ROOT, 'src/data/posts.json'), 'utf8'));
+  for (const p of postManifest) {
+    jobs.push({ kind: 'post', slug: p.slug, src: postMap.get(p.slug), dir: 'src/book/posts' });
   }
 
   let failures = 0;

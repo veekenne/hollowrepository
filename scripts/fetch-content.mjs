@@ -31,6 +31,7 @@ const DIRS = {
   raw: path.join(ROOT, 'migration', 'raw'),
   img: path.join(ROOT, 'public', 'images'),
   chapters: path.join(ROOT, 'src', 'book', 'chapters'),
+  posts: path.join(ROOT, 'src', 'book', 'posts'),
   pages: path.join(ROOT, 'src', 'book', 'pages'),
   data: path.join(ROOT, 'src', 'data'),
 };
@@ -50,6 +51,9 @@ const CHAPTER_SET = new Set(CHAPTER_SLUGS);
 const PROSE_PAGES = {
   'about-the-project': 'About the Project',
   'about-us': 'About the Creators',
+  'support-hollow-reign': 'Support Hollow Reign',
+  'art-gallery': 'Art Gallery',
+  'species-guide': 'Maps & Species Guide',
 };
 const PROSE_SET = new Set(Object.keys(PROSE_PAGES));
 
@@ -278,10 +282,19 @@ async function main() {
   for (const d of Object.values(DIRS)) await mkdir(d, { recursive: true });
 
   console.log('Fetching from WordPress.com public API…');
-  const pages = await fetchAll('pages', 'id,slug,title,content,date,modified,link');
-  console.log(`  ${pages.length} pages`);
+  const [pages, posts] = await Promise.all([
+    fetchAll('pages', 'id,slug,title,content,date,modified,link'),
+    fetchAll('posts', 'id,slug,title,content,excerpt,date,modified,link'),
+  ]);
+  // Media is archived for provenance only (non-fatal).
+  try {
+    await fetchAll('media', 'id,slug,source_url,alt_text,caption,media_details');
+  } catch (e) {
+    console.warn('  (media list unavailable — continuing)', e.message);
+  }
+  console.log(`  ${pages.length} pages, ${posts.length} posts`);
 
-  const postSlugs = new Set(); // blog removed; no post-link rewriting needed
+  const postSlugs = new Set(posts.map((p) => p.slug));
   const pagesBySlug = new Map(pages.map((p) => [p.slug, p]));
 
   // ---- Chapters ----
@@ -319,6 +332,22 @@ async function main() {
   }
   console.log(`  wrote ${pageManifest.length} info pages`);
 
+  // ---- Blog posts (newest first) ----
+  const postManifest = [];
+  const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+  for (const post of sorted) {
+    const body = await cleanHtml(post.content.rendered, { postSlugs });
+    await writeFile(path.join(DIRS.posts, `${post.slug}.html`), body + '\n');
+    postManifest.push({
+      slug: post.slug,
+      title: plainText(post.title.rendered),
+      date: post.date,
+      dateDisplay: fmtDate(post.date),
+      excerpt: plainText(post.excerpt?.rendered) || plainText(post.content.rendered).slice(0, 200),
+    });
+  }
+  console.log(`  wrote ${postManifest.length} blog posts`);
+
   // ---- Default social image (prefer the book cover; else first illustration) ----
   const allImgs = (await readdir(DIRS.img)).filter((f) => f !== 'og-default.jpg');
   const cover = allImgs.find((f) => /cover/i.test(f) && /\.(jpe?g|png)$/i.test(f));
@@ -332,10 +361,11 @@ async function main() {
 
   // ---- Manifests ----
   await writeFile(path.join(DIRS.data, 'chapters.json'), JSON.stringify(chapterManifest, null, 2) + '\n');
+  await writeFile(path.join(DIRS.data, 'posts.json'), JSON.stringify(postManifest, null, 2) + '\n');
   await writeFile(path.join(DIRS.data, 'pages.json'), JSON.stringify(pageManifest, null, 2) + '\n');
 
   const imgs = (await readdir(DIRS.img)).filter((f) => f !== '.gitkeep');
-  console.log(`\nDone. ${chapterManifest.length} chapters, ${pageManifest.length} pages, ${imgs.length} images vendored.`);
+  console.log(`\nDone. ${chapterManifest.length} chapters, ${postManifest.length} posts, ${pageManifest.length} pages, ${imgs.length} images vendored.`);
 }
 
 main().catch((err) => {

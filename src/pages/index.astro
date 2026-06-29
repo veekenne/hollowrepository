@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { POSTS } from '../lib/content';
 import { withBase, SITE_TAGLINE } from '../lib/site';
+
+const latest = POSTS.slice(0, 3);
 ---
 <BaseLayout>
   <section class="home-hero">
@@ -44,6 +47,24 @@ import { withBase, SITE_TAGLINE } from '../lib/site';
         <span class="card-cta">Learn more →</span>
       </a>
     </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section__title">From the Blog</h2>
+    <div class="post-list">
+      {
+        latest.map((p) => (
+          <a class="card post-card" href={withBase(`/blog/${p.slug}/`)}>
+            <p class="meta"><time datetime={p.date}>{p.dateDisplay}</time></p>
+            <h3>{p.title}</h3>
+            <p>{p.excerpt}</p>
+          </a>
+        ))
+      }
+    </div>
+    <p style="text-align:center;margin-top:var(--space-5);">
+      <a href={withBase('/blog/')}>All posts →</a>
+    </p>
   </section>
 
   <script>
