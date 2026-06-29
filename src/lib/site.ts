@@ -14,17 +14,11 @@ export const AUTHORS = {
   illustrator: 'Rowan Westmoreland',
 };
 
-export const KOFI_URL = 'https://ko-fi.com/hollowreign';
-
 /** Primary navigation. Hrefs are app-absolute (leading slash); pass through withBase() when rendering. */
 export const NAV: { label: string; href: string }[] = [
   { label: 'Contents', href: '/table-of-contents/' },
   { label: 'About the Project', href: '/about-the-project/' },
   { label: 'Creators', href: '/about-us/' },
-  { label: 'Worlds Guide', href: '/species-guide/' },
-  { label: 'Art Gallery', href: '/art-gallery/' },
-  { label: 'Support', href: '/support-hollow-reign/' },
-  { label: 'Blog', href: '/blog/' },
 ];
 
 /**
