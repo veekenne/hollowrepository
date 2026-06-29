@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { KOFI_URL, withBase } from '../lib/site';
+import { withBase } from '../lib/site';
 ---
 <PageLayout title="Volume Two" eyebrow="The Saga Continues" lede="Pietro's story isn't over.">
   <div class="prose">
@@ -11,13 +11,7 @@ import { KOFI_URL, withBase } from '../lib/site';
     <p>
       New chapters are in the works. When they're ready, they'll appear here and in
       the <a href={withBase('/table-of-contents/')}>Table of Contents</a>. Until then,
-      you can <a href={withBase('/chapter-one/')}>start the story from the beginning</a>
-      or follow the <a href={withBase('/blog/')}>blog</a> for announcements.
+      you can <a href={withBase('/chapter-one/')}>start the story from the beginning</a>.
     </p>
-  </div>
-  <div class="notice" style="margin-top: var(--space-6);">
-    <strong>Want updates?</strong> Subscribe via
-    <a href={withBase('/rss.xml')}>RSS</a> or support the project on
-    <a href={KOFI_URL} rel="noopener">Ko-fi</a>.
   </div>
 </PageLayout>
