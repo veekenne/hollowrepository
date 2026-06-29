@@ -67,6 +67,12 @@
   --selection: #e9d8ff;
   --shadow: 0 1px 2px rgba(20, 16, 40, 0.06), 0 8px 24px -12px rgba(20, 16, 40, 0.18);
   --header-bg: rgba(250, 248, 244, 0.82);
+
+  /* Interlude chapters (C / D / E♭) — faded "memory" palette */
+  --interlude-bg: #ece6dd;
+  --interlude-accent: #b08d57;
+  --interlude-link: #6a4f24;
+  --interlude-muted: #6b6353;
   color-scheme: light;
 }
 
@@ -89,5 +95,10 @@
   --selection: #3a2d63;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -14px rgba(0, 0, 0, 0.7);
   --header-bg: rgba(11, 10, 18, 0.8);
+
+  --interlude-bg: #13101c;
+  --interlude-accent: #cbb78a;
+  --interlude-link: #ddcda0;
+  --interlude-muted: #a99e87;
   color-scheme: dark;
 }

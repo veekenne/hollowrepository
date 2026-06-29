@@ -18,6 +18,7 @@ const { chapter, html, prev, next, position, total } = Astro.props;
 const description = chapter.dateline
   ? `${chapter.title} — ${chapter.dateline}`
   : `${chapter.title} of Hollow Reign, a queer space saga.`;
+const isInterlude = chapter.interlude === true;
 ---
 <BaseLayout title={chapter.title} description={description} type="article">
   <div class="reader-progress" aria-hidden="true"></div>
@@ -64,13 +65,13 @@ const description = chapter.dateline
   </div>
 
   <article
-    class="chapter container"
+    class:list={['chapter', 'container', isInterlude && 'is-interlude']}
     data-chapter-slug={chapter.slug}
     data-chapter-number={String(chapter.number)}
     data-chapter-title={chapter.title}
   >
     <header class="chapter-header">
-      <p class="chapter-num">Volume {volumeName(chapter.volume)}</p>
+      <p class="chapter-num">{isInterlude ? 'Interlude' : `Volume ${volumeName(chapter.volume)}`}</p>
       <h1>{chapter.title}</h1>
     </header>
     <Prose html={html} />

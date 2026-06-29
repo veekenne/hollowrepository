@@ -746,6 +746,14 @@ a.card:hover {
   font-size: var(--text-3xl);
   margin-top: var(--space-2);
 }
+.home-hero__subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--text);
+  max-width: 34ch;
+  margin: var(--space-3) auto 0;
+}
 .home-hero__text .summary {
   font-family: var(--font-body);
   font-size: var(--text-xl);
@@ -771,6 +779,15 @@ a.card:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.home-hero__cover a {
+  display: inline-block;
+  border-radius: var(--radius);
+}
+.home-hero__cover a:hover img {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.45);
 }
 @media (min-width: 48rem) {
   .home-hero__grid {
@@ -784,6 +801,7 @@ a.card:hover {
   .home-hero__cover img {
     width: 280px;
   }
+  .home-hero__subtitle,
   .home-hero__text .summary {
     margin-inline: 0;
   }
@@ -802,6 +820,56 @@ a.card:hover {
   font-size: var(--text-sm);
   font-weight: 600;
   margin-top: auto;
+}
+
+/* ---- Interlude chapters (C / D / E♭): faded "memory of a memory" ---- */
+body:has(.chapter.is-interlude) {
+  background: var(--interlude-bg);
+}
+body:has(.chapter.is-interlude) .site-header,
+body:has(.chapter.is-interlude) .reader-toolbar {
+  background: color-mix(in srgb, var(--interlude-bg) 82%, transparent);
+}
+body:has(.chapter.is-interlude) .reader-progress {
+  background: var(--interlude-accent);
+}
+.chapter.is-interlude .chapter-header .chapter-num {
+  color: var(--interlude-link);
+}
+.chapter.is-interlude .chapter-header h1 {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.chapter.is-interlude .chapter-header::after {
+  content: "\266A"; /* ♪ */
+  display: block;
+  margin-top: var(--space-4);
+  font-size: 1.15rem;
+  color: var(--interlude-accent);
+}
+.chapter.is-interlude .prose .dateline {
+  color: var(--interlude-muted);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+/* drop cap on the first prose paragraph (after the dateline lines) */
+.chapter.is-interlude .prose .dateline + p:not(.dateline)::first-letter,
+.chapter.is-interlude .prose > p:not(.dateline):first-child::first-letter {
+  float: left;
+  font-family: var(--font-body);
+  font-size: 3.3em;
+  line-height: 0.78;
+  padding-right: 0.08em;
+  margin-top: 0.04em;
+  color: var(--interlude-link);
+  font-style: normal;
+}
+.chapter.is-interlude .prose a {
+  color: var(--interlude-link);
+  text-decoration-color: color-mix(in srgb, var(--interlude-link) 40%, transparent);
 }
 
 /* ---- View transitions (soft cross-fade between pages) ---- */

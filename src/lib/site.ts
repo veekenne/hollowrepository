@@ -4,6 +4,7 @@
  */
 
 export const SITE_TITLE = 'Hollow Reign';
+export const SITE_SUBTITLE = 'From a notebook under a pillow to interdimensional space and back.';
 export const SITE_DESCRIPTION =
   'Hollow Reign is a free, serialized story of an accidental queer space pirate kid ' +
   'turned fake princess changing the Worlds, one lie at a time.';

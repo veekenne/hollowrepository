@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { withBase } from '../lib/site';
+import { withBase, SITE_SUBTITLE } from '../lib/site';
 ---
 <BaseLayout>
   <section class="home-hero">
     <div class="container home-hero__grid">
       <div class="home-hero__text">
         <h1>Hollow Reign</h1>
+        <p class="home-hero__subtitle">{SITE_SUBTITLE}</p>
         <p class="summary">
-          The story of an accidental queer space pirate kid turned fake princess
-          changing the Worlds, one lie at a time.
+          An accidental queer kid turned fake princess and space pirate changes the
+          Worlds, one lie at a time.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary btn-lg" href={withBase('/chapter-one/')}>Start reading</a>
@@ -18,13 +19,21 @@ import { withBase } from '../lib/site';
         </div>
       </div>
       <div class="home-hero__cover">
-        <img
-          src={withBase('/images/hollow-reign-cover.jpg')}
-          width="314"
-          height="500"
-          alt="Hollow Reign cover art"
-          fetchpriority="high"
-        />
+        <a
+          href="https://www.amazon.com/Hollow-Reign-One-Crushing-Debt/dp/B0B7PZB4SJ"
+          target="_blank"
+          rel="noopener"
+          aria-label="Buy Hollow Reign, Volume One: Crushing Debt on Amazon"
+          title="Buy on Amazon"
+        >
+          <img
+            src={withBase('/images/hollow-reign-cover.jpg')}
+            width="314"
+            height="500"
+            alt="Hollow Reign, Volume One: Crushing Debt — cover"
+            fetchpriority="high"
+          />
+        </a>
       </div>
     </div>
   </section>
