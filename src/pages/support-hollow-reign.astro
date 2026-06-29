@@ -1,0 +1,10 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Prose from '../components/Prose.astro';
+import { getPageHtml, getPageMeta } from '../lib/content';
+const slug = 'support-hollow-reign';
+const meta = getPageMeta(slug);
+---
+<PageLayout title={meta?.title ?? 'Support Hollow Reign'} eyebrow="Support">
+  <Prose html={getPageHtml(slug)} />
+</PageLayout>

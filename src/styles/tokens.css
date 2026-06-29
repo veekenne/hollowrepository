@@ -1,0 +1,93 @@
+/* =========================================================================
+   Design tokens — colors, type, spacing.
+   The whole look lives here; retune freely. Light is the default; the
+   [data-theme="dark"] block overrides for the deep-space night theme.
+   ========================================================================= */
+
+:root {
+  /* Brand accent gradient — aurora / pride-adjacent, used sparingly. */
+  --aurora: linear-gradient(90deg, #ff6ea9 0%, #a855f7 50%, #4cc9f0 100%);
+
+  /* Type families. System fonts by default: fast, offline-safe, no FOUT.
+     Swap these two lines to adopt web fonts later. */
+  --font-body: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-ui);
+
+  /* Fluid type scale (UI). Reading text scales separately via --reader-scale. */
+  --text-xs: 0.78rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Layout */
+  --measure: 40rem;        /* reading column (~68ch with Georgia) */
+  --page-max: 72rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --header-h: 3.5rem;
+
+  --radius-sm: 0.375rem;
+  --radius: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --reader-scale: 1; /* overridden inline by the reader text-size control */
+
+  /* ---- Light theme (default) ---- */
+  --bg: #faf8f4;
+  --bg-soft: #f1ede4;
+  --surface: #ffffff;
+  --surface-2: #f7f4ee;
+  --text: #1b1a23;
+  --text-muted: #56536a;
+  --text-faint: #807d94;
+  --border: #e5e1d6;
+  --border-strong: #d2ccbd;
+  --link: #6d28d9;
+  --link-hover: #5b21b6;
+  --accent: #7c3aed;
+  --accent-soft: #ede4ff;
+  --on-accent: #ffffff;
+  --focus: #7c3aed;
+  --selection: #e9d8ff;
+  --shadow: 0 1px 2px rgba(20, 16, 40, 0.06), 0 8px 24px -12px rgba(20, 16, 40, 0.18);
+  --header-bg: rgba(250, 248, 244, 0.82);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0b0a12;
+  --bg-soft: #131121;
+  --surface: #161427;
+  --surface-2: #1c1933;
+  --text: #ece9f6;
+  --text-muted: #b1adcb;
+  --text-faint: #837f9f;
+  --border: #272340;
+  --border-strong: #393355;
+  --link: #c4b5fd;
+  --link-hover: #ddd4ff;
+  --accent: #c084fc;
+  --accent-soft: #241b3d;
+  --on-accent: #120b1f;
+  --focus: #c4b5fd;
+  --selection: #3a2d63;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -14px rgba(0, 0, 0, 0.7);
+  --header-bg: rgba(11, 10, 18, 0.8);
+  color-scheme: dark;
+}

@@ -1,0 +1,16 @@
+---
+import ReaderLayout from '../layouts/ReaderLayout.astro';
+import { CHAPTERS, getChapterHtml, getChapterNeighbors, type Chapter } from '../lib/content';
+
+export function getStaticPaths() {
+  return CHAPTERS.map((chapter) => ({
+    params: { chapter: chapter.slug },
+    props: { chapter },
+  }));
+}
+
+const { chapter } = Astro.props as { chapter: Chapter };
+const html = getChapterHtml(chapter.slug);
+const { prev, next } = getChapterNeighbors(chapter.slug);
+---
+<ReaderLayout chapter={chapter} html={html} prev={prev} next={next} />

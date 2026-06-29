@@ -1,0 +1,233 @@
+[
+  {
+    "slug": "chapter-one",
+    "number": 1,
+    "title": "Chapter One",
+    "dateline": "Tuesday the 10th, · Lunar 3, Luka 16 · Lumena, Lumeria · Brooke Regina Secondary School",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-two",
+    "number": 2,
+    "title": "Chapter Two",
+    "dateline": "Tuesday the 10th, Lunar 3, Luka 16 · Lumena, Lumeria · Brookside Central Booking – Royal Police Corps",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-three",
+    "number": 3,
+    "title": "Chapter Three",
+    "dateline": "",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-four",
+    "number": 4,
+    "title": "Chapter Four",
+    "dateline": "06:00, Wednesday the 11th, · Lunar 3, Luka 16 · Lumena, Lumeria · Brookside Central Booking",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-five",
+    "number": 5,
+    "title": "Chapter Five",
+    "dateline": "08:15 · Wednesday the 11th, Lunar 3, Luka 16 · Lumena, Lumeria · Near the Harbor · Docks",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-six",
+    "number": 6,
+    "title": "Chapter Six",
+    "dateline": "Wednesday the 11th, Lunar 3, Luka 16 · The Dimensional Divide · Onboard the Neptune’s Rhapsody · Pietro’s Room",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-seven",
+    "number": 7,
+    "title": "Chapter Seven",
+    "dateline": "08:17, Thursday the 12th, Lunar 3, Luka 16 · The Dimensional Divide · Onboard the Neptune’s Rhapsody · Breakfast",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-eight",
+    "number": 8,
+    "title": "Chapter Eight",
+    "dateline": "Evening, Thursday the 12th, Lunar 3, Luka 16 · Carthage Colony · Ancillary Dockpost · Just before First Sunset",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-nine",
+    "number": 9,
+    "title": "Chapter Nine",
+    "dateline": "After Sunset, · Thursday the 12th, · Lunar 3, Luka 16 · Carthage Colony · Ancillary Dockpost",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-ten",
+    "number": 10,
+    "title": "Chapter Ten",
+    "dateline": "",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-eleven",
+    "number": 11,
+    "title": "Chapter Eleven",
+    "dateline": "The Wee Hours of the Morning, · Friday the 13th, · Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · The Neptune’s Rhapsody · The Great Room",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twelve",
+    "number": 12,
+    "title": "Chapter Twelve",
+    "dateline": "After Lunch · Sunday the 15th, · Lunar 3, Luka 16 · Tianjin Ancillary Port 3 · Onboard The Neptune’s Rhapsody",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-thirteen",
+    "number": 13,
+    "title": "Chapter Thirteen",
+    "dateline": "Late Afternoon, · Sunday the 15th, Lunar 3, Luka 16 · Tianjin Ancillary Port 3 · The Docks",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-fourteen",
+    "number": 14,
+    "title": "Chapter Fourteen",
+    "dateline": "That Night, · Sunday the 15th, · Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · Onboard the Neptune’s Rhapsody · The Captain’s Quarters",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-fifteen",
+    "number": 15,
+    "title": "Chapter Fifteen",
+    "dateline": "The Dead of Night, · Monday the 16th, Lunar 3, Luka 16 · Lumena, Lumeria · Near the Fenn Family Home",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-sixteen",
+    "number": 16,
+    "title": "Chapter Sixteen",
+    "dateline": "Midmorning · Tuesday the 31st, · Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · Onboard the Neptune’s Rhapsody · Quail’s Sewing Room",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-seventeen",
+    "number": 17,
+    "title": "Chapter Seventeen",
+    "dateline": "Afternoon · Tuesday the 31st, Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · Onboard the Neptune’s Rhapsody · The Pool",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-eighteen",
+    "number": 18,
+    "title": "Chapter Eighteen",
+    "dateline": "That Same Afternoon · Tuesday the 31st, Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · Onboard the Neptune’s Rhapsody · The Cockpit",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-nineteen",
+    "number": 19,
+    "title": "Chapter Nineteen",
+    "dateline": "That Same Afternoon · Tuesday the 31st, Lunar 3, Luka 16 · Somewhere in the Dimensional Divide · Onboard the Neptune’s Rhapsody · The Captain’s Quarters",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty",
+    "number": 20,
+    "title": "Chapter Twenty",
+    "dateline": "0830 · Wednesday the 1st · Lunar 4, Luka 16 · Port Helsingin · Bayside Senate Building",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-one",
+    "number": 21,
+    "title": "Chapter Twenty-One",
+    "dateline": "Wednesday the 1st · Lunar 4, Luka 16 · Port Helsingin · Bayside Senate Building",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-two",
+    "number": 22,
+    "title": "Chapter Twenty-Two",
+    "dateline": "14:00 · Wednesday the First · Lunar 4, Luka 16 · Port Helsingin · Bayside Senate Building – Courtyard",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-three",
+    "number": 23,
+    "title": "Chapter Twenty-Three",
+    "dateline": "14:55 · Wednesday the First · Lunar 4, Luka 16 · The Dimensional Divide · Onboard the Neptune’s Rhapsody",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-four",
+    "number": 24,
+    "title": "Chapter Twenty-Four",
+    "dateline": "16:33 · Wednesday the First · Lunar 4, Luka 16 · Lumena, Lumeria · Near the Fenn Family Home",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-five",
+    "number": 25,
+    "title": "Chapter Twenty-Five",
+    "dateline": "18:55 · Wednesday the First · Lunar 4, Luka 16 · Lumena, Lumeria · The Grounds of the Palace at Lumena",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-six",
+    "number": 26,
+    "title": "Chapter Twenty-Six",
+    "dateline": "Afternoon Tea · Monday the 13th · Lunar 4, Luka 16 · Lumena, Lumeria · Cloudburst – The Palace at Lumena",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-seven",
+    "number": 27,
+    "title": "Chapter Twenty-Seven",
+    "dateline": "Monday the 13th · Lunar 4, Luka 16 · Onboard The Neptune’s Rhapsody · Somewhere in the Dimensional Divide",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-eight",
+    "number": 28,
+    "title": "Chapter Twenty-Eight",
+    "dateline": "18:00 · Sunday the 26th · Lunar 4, Luka 16 · Lumena, Lumeria · Main Residence – The Palace at Lumena",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-twenty-nine",
+    "number": 29,
+    "title": "Chapter Twenty-Nine",
+    "dateline": "18:30 · Sunday the 26th · Lunar 4, Luka 16 · Lumena, Lumeria · Main Residence – The Palace at Lumena",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-thirty",
+    "number": 30,
+    "title": "Chapter Thirty",
+    "dateline": "09:00 · Monday the 27th · Lunar 4, Luka 16 · Lumena, Lumeria · Lumena Senate Hall",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-thirty-one",
+    "number": 31,
+    "title": "Chapter Thirty-One",
+    "dateline": "13:00 · Monday the 27th · Lunar 4, Luka 16 · Lumena, Lumeria · The Palace at Lumena – Herb Garden",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-thirty-two",
+    "number": 32,
+    "title": "Chapter Thirty-Two",
+    "dateline": "23:45 · Monday the 27th · Lunar 4, Luka 16 · Lumena, Lumeria · The Palace at Lumena – Cloudburst",
+    "volume": 1
+  },
+  {
+    "slug": "chapter-thirty-three",
+    "number": 33,
+    "title": "Chapter Thirty-Three",
+    "dateline": "00:15 · Tuesday the 28th · Lunar 4, Luka 16 · Lumena, Lumeria · The Palace at Lumena – Cloudburst",
+    "volume": 1
+  }
+]

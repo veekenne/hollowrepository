@@ -1,0 +1,37 @@
+---
+import { withBase } from '../lib/site';
+import Icon from './Icon.astro';
+import type { Chapter } from '../lib/content';
+
+interface Props {
+  prev: Chapter | null;
+  next: Chapter | null;
+}
+const { prev, next } = Astro.props;
+---
+<nav class="chapter-nav" aria-label="Chapter navigation">
+  {
+    prev ? (
+      <a class="prev" rel="prev" href={withBase(`/${prev.slug}/`)} data-prev-chapter>
+        <span class="dir">
+          <Icon name="chevron-left" size={16} /> Previous
+        </span>
+        <span class="ttl">{prev.title}</span>
+      </a>
+    ) : (
+      <div aria-hidden="true" />
+    )
+  }
+  {
+    next ? (
+      <a class="next" rel="next" href={withBase(`/${next.slug}/`)} data-next-chapter>
+        <span class="dir">
+          Next <Icon name="chevron-right" size={16} />
+        </span>
+        <span class="ttl">{next.title}</span>
+      </a>
+    ) : (
+      <div aria-hidden="true" />
+    )
+  }
+</nav>

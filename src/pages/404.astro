@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/site';
+---
+<BaseLayout title="Page Not Found" description="That page drifted off into the Dimensional Divide.">
+  <div class="page container" style="text-align:center;">
+    <p class="eyebrow" style="color:var(--accent);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;">404</p>
+    <h1 style="font-size:var(--text-3xl);margin-top:var(--space-2);">Lost in the Dimensional Divide</h1>
+    <p class="lede" style="margin:var(--space-3) auto 0;max-width:42ch;color:var(--text-muted);">
+      We couldn't find that page — it may have slipped between the Worlds.
+    </p>
+    <p style="margin-top:var(--space-6);">
+      <a class="btn btn-primary btn-lg" href={withBase('/')}>Return home</a>
+    </p>
+  </div>
+</BaseLayout>

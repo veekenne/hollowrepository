@@ -1,0 +1,10 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Prose from '../components/Prose.astro';
+import { getPageHtml, getPageMeta } from '../lib/content';
+const slug = 'species-guide';
+const meta = getPageMeta(slug);
+---
+<PageLayout title={meta?.title ?? 'Maps & Species Guide'} eyebrow="Worlds Guide">
+  <Prose html={getPageHtml(slug)} />
+</PageLayout>

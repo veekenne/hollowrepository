@@ -1,0 +1,48 @@
+---
+import { SITE_TITLE, SITE_TAGLINE, NAV, withBase } from '../lib/site';
+import Icon from './Icon.astro';
+
+const current = Astro.url.pathname.replace(/\/+$/, '');
+function isCurrent(href: string): boolean {
+  const target = withBase(href).replace(/\/+$/, '');
+  if (target === withBase('/').replace(/\/+$/, '')) return current === target;
+  return current === target || current.startsWith(target + '/');
+}
+---
+<header class="site-header">
+  <div class="container site-header__bar">
+    <a class="brand" href={withBase('/')}>
+      <span class="brand__mark">{SITE_TITLE}</span>
+      <span class="brand__tag">{SITE_TAGLINE}</span>
+    </a>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      {NAV.map((item) => (
+        <a href={withBase(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <button
+      class="icon-btn theme-toggle"
+      type="button"
+      aria-label="Switch between light and dark theme"
+      data-theme-toggle
+    >
+      <Icon name="sun" class="icon-sun" />
+      <Icon name="moon" class="icon-moon" />
+    </button>
+
+    <button
+      class="nav-toggle icon-btn"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Open menu"
+      data-nav-toggle
+    >
+      <Icon name="menu" />
+    </button>
+  </div>
+</header>

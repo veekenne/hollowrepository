@@ -1,0 +1,20 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Prose from '../../components/Prose.astro';
+import { POSTS, getPostHtml, type Post } from '../../lib/content';
+
+export function getStaticPaths() {
+  return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Post };
+---
+<PageLayout
+  title={post.title}
+  eyebrow="Blog"
+  lede={post.dateDisplay}
+  description={post.excerpt}
+  type="article"
+>
+  <Prose html={getPostHtml(post.slug)} />
+</PageLayout>

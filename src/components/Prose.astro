@@ -1,0 +1,10 @@
+---
+/** Renders preserved/verbatim HTML, resolving __BASE__ link/image placeholders. */
+import { resolveHtml } from '../lib/site';
+interface Props {
+  html: string;
+  class?: string;
+}
+const { html, class: className } = Astro.props;
+---
+<div class:list={['prose', className]} set:html={resolveHtml(html)} />

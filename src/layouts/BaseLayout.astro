@@ -1,0 +1,125 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION, absoluteUrl, withBase } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** App-absolute path (leading slash) for canonical/OG. Defaults to the current page. */
+  path?: string;
+  ogImage?: string;
+  type?: string;
+}
+
+const baseNoSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  path = Astro.url.pathname.replace(baseNoSlash, '') || '/',
+  ogImage = '/images/og-default.jpg',
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${SITE_TITLE}` : `${SITE_TITLE} — ${SITE_TAGLINE}`;
+const canonical = absoluteUrl(path);
+const image = absoluteUrl(ogImage);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <meta name="theme-color" content="#0b0a12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} — Blog`} href={withBase('/rss.xml')} />
+
+    {/* Apply theme + reader scale before paint to avoid a flash. */}
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.dataset.js = '';
+        try {
+          var t = localStorage.getItem('hr-theme') || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          d.dataset.theme = dark ? 'dark' : 'light';
+          var s = localStorage.getItem('hr-reader-scale');
+          if (s) d.style.setProperty('--reader-scale', s);
+        } catch (e) {
+          d.dataset.theme = 'light';
+        }
+      })();
+    </script>
+
+    <ClientRouter />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+
+    <script>
+      import { getPref, setPref, resolve } from '../scripts/theme';
+
+      function initHeader() {
+        const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+        const nav = document.getElementById('site-nav');
+        if (toggle && nav && !toggle.dataset.bound) {
+          toggle.dataset.bound = '1';
+          toggle.addEventListener('click', () => {
+            const open = nav.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          });
+          nav.addEventListener('click', (e) => {
+            if ((e.target as HTMLElement).tagName === 'A') {
+              nav.classList.remove('is-open');
+              toggle.setAttribute('aria-expanded', 'false');
+              toggle.setAttribute('aria-label', 'Open menu');
+            }
+          });
+        }
+
+        const tt = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+        if (tt && !tt.dataset.bound) {
+          tt.dataset.bound = '1';
+          tt.addEventListener('click', () => {
+            const showing = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+            setPref(showing === 'dark' ? 'light' : 'dark');
+          });
+        }
+      }
+
+      document.addEventListener('astro:page-load', initHeader);
+
+      // Follow the OS theme live while the user is on the default "system" setting.
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          if (getPref() === 'system') document.documentElement.dataset.theme = resolve('system');
+        });
+      } catch (e) {
+        /* ignore */
+      }
+    </script>
+  </body>
+</html>

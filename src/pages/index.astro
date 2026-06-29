@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { POSTS } from '../lib/content';
+import { withBase, SITE_TAGLINE } from '../lib/site';
+
+const latest = POSTS.slice(0, 3);
+---
+<BaseLayout>
+  <section class="home-hero">
+    <div class="container home-hero__grid">
+      <div class="home-hero__text">
+        <p class="tagline">{SITE_TAGLINE}</p>
+        <h1>Hollow Reign</h1>
+        <p class="summary">
+          The story of an accidental queer space pirate kid turned fake princess
+          changing the Worlds, one lie at a time.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href={withBase('/chapter-one/')}>Start reading</a>
+          <a class="btn btn-lg" href={withBase('/table-of-contents/')}>Table of contents</a>
+          <a class="btn btn-lg" id="continue-reading" href="#" hidden><span>Continue reading</span></a>
+        </div>
+      </div>
+      <div class="home-hero__cover">
+        <img
+          src={withBase('/images/hollow-reign-cover.jpg')}
+          width="314"
+          height="500"
+          alt="Hollow Reign cover art"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section__title">Dive In</h2>
+    <div class="grid dive-grid">
+      <a class="card" href={withBase('/chapter-one/')}>
+        <h3>Volume One</h3>
+        <p>Thirty-three chapters. Start from the beginning and read straight through the night.</p>
+        <span class="card-cta">Begin Chapter One →</span>
+      </a>
+      <a class="card" href={withBase('/volume-two/')}>
+        <h3>Volume Two</h3>
+        <p>The next arc of the saga, where the lies really start to unravel. Coming soon.</p>
+        <span class="card-cta">Learn more →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section__title">From the Blog</h2>
+    <div class="post-list">
+      {
+        latest.map((p) => (
+          <a class="card post-card" href={withBase(`/blog/${p.slug}/`)}>
+            <p class="meta"><time datetime={p.date}>{p.dateDisplay}</time></p>
+            <h3>{p.title}</h3>
+            <p>{p.excerpt}</p>
+          </a>
+        ))
+      }
+    </div>
+    <p style="text-align:center;margin-top:var(--space-5);">
+      <a href={withBase('/blog/')}>All posts →</a>
+    </p>
+  </section>
+
+  <script>
+    const BASE = import.meta.env.BASE_URL;
+    function initContinue() {
+      const el = document.getElementById('continue-reading');
+      if (!el) return;
+      let d: { slug?: string; number?: string; title?: string } | null = null;
+      try {
+        d = JSON.parse(localStorage.getItem('hr-last-chapter') || 'null');
+      } catch {
+        d = null;
+      }
+      if (d && d.slug) {
+        el.setAttribute('href', BASE.replace(/\/$/, '') + '/' + d.slug + '/');
+        const span = el.querySelector('span');
+        if (span) span.textContent = d.number ? `Continue · Chapter ${d.number}` : 'Continue reading';
+        el.hidden = false;
+      }
+    }
+    document.addEventListener('astro:page-load', initContinue);
+  </script>
+</BaseLayout>

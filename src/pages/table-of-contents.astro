@@ -1,0 +1,35 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { CHAPTERS } from '../lib/content';
+import { withBase } from '../lib/site';
+
+const volumeOne = CHAPTERS.filter((c) => c.volume === 1);
+---
+<PageLayout title="Table of Contents" eyebrow="Read" lede="The complete saga, in order.">
+  <div class="toc">
+    <section class="toc__volume">
+      <h2>Volume One</h2>
+      <ol class="toc__list">
+        {
+          volumeOne.map((c) => (
+            <li>
+              <a href={withBase(`/${c.slug}/`)}>
+                <span class="toc__num">{c.number}</span>
+                <span class="toc__title">{c.title}</span>
+                {c.dateline && <span class="toc__dateline">{c.dateline}</span>}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="toc__volume">
+      <h2>Volume Two</h2>
+      <div class="notice">
+        <strong>Coming soon.</strong> Volume Two is in the works — follow the
+        <a href={withBase('/blog/')}>blog</a> for updates.
+      </div>
+    </section>
+  </div>
+</PageLayout>
