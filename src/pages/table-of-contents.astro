@@ -14,7 +14,7 @@ const volumeOne = CHAPTERS.filter((c) => c.volume === 1);
           volumeOne.map((c) => (
             <li>
               <a href={withBase(`/${c.slug}/`)}>
-                <span class="toc__num">{c.number}</span>
+                <span class="toc__num">{c.number ?? '♪'}</span>
                 <span class="toc__title">{c.title}</span>
                 {c.dateline && <span class="toc__dateline">{c.dateline}</span>}
               </a>

@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE, NAV, withBase } from '../lib/site';
+import { SITE_TITLE, NAV, withBase } from '../lib/site';
 import Icon from './Icon.astro';
 
 const current = Astro.url.pathname.replace(/\/+$/, '');
@@ -13,7 +13,6 @@ function isCurrent(href: string): boolean {
   <div class="container site-header__bar">
     <a class="brand" href={withBase('/')}>
       <span class="brand__mark">{SITE_TITLE}</span>
-      <span class="brand__tag">{SITE_TAGLINE}</span>
     </a>
 
     <nav id="site-nav" class="site-nav" aria-label="Primary">

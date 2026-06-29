@@ -1,8 +1,7 @@
 # Hollow Reign
 
 A modern, accessible web reader for **Hollow Reign** — *A Queer Space Saga for All*, the
-serialized illustrated novel by **Volta Volgate** (writer) and **Rowan Westmoreland**
-(illustrator). Rebuilt from the original [WordPress site](https://hollowreign.wordpress.com/)
+serialized web serial by **Volta Volgate**. Rebuilt from the original [WordPress site](https://hollowreign.wordpress.com/)
 as a fast static site that reads like clicking through a book — while preserving every word
 of the original writing.
 
@@ -14,10 +13,10 @@ of the original writing.
   text size, and a reading-progress bar.
 - **Reads like a book** — turn pages with the on-screen Prev/Next buttons or the **← / →**
   arrow keys; *Continue reading* remembers where you left off.
-- **Everything migrated** — all 33 Volume One chapters, the Table of Contents, every blog
-  post (with an RSS feed), the info pages, the art gallery, and the worlds guide.
-- **Verbatim** — chapter and essay text is preserved exactly; only site chrome (old
-  Prev/Next links, share widgets) was regenerated. A checker proves no prose changed.
+- **The whole book** — all 33 Volume One chapters plus the C / D / E♭ interludes, the
+  Table of Contents, and the About the Project & Creator pages.
+- **Verbatim** — chapter text is preserved exactly; only site chrome (old Prev/Next links,
+  share widgets, illustrations) was regenerated. A checker proves no prose changed.
 - **Fast, responsive, accessible** — static HTML, near-zero JavaScript, WCAG-AA, fully
   keyboard-operable, and independent of WordPress.
 
@@ -42,16 +41,15 @@ npm run preview  # preview the production build locally
 ```
 src/
   book/            # migrated, verbatim content (HTML bodies)
-    chapters/      #   chapter-one.html … chapter-thirty-three.html
-    posts/         #   blog post bodies
-    pages/         #   about, creators, support, gallery, worlds-guide
+    chapters/      #   chapter-one … chapter-thirty-three + c, d, e-flat interludes
+    pages/         #   about-the-project, about-us (creators)
   data/            # generated manifests (order, titles, datelines, dates)
   layouts/         # BaseLayout, ReaderLayout, PageLayout
   components/      # header, footer, reader nav, theme toggle, icons, Prose
-  pages/           # routes (home, [chapter], table-of-contents, blog/*, info pages, rss, 404)
+  pages/           # routes (home, [chapter], table-of-contents, volume-two, about pages, 404)
   scripts/         # client: theme.ts, reader.ts
   styles/          # tokens.css (colors/type), global.css
-public/images/     # vendored illustrations + cover (no WordPress dependency)
+public/images/     # vendored cover + author photo (no WordPress dependency)
 migration/raw/     # archived WordPress API responses (provenance)
 scripts/           # fetch-content.mjs (migration), verify-verbatim.mjs (fidelity check)
 .github/workflows/ # deploy.yml (GitHub Pages)
@@ -64,7 +62,6 @@ The text lives in this repo as files — the site no longer depends on WordPress
 | Type        | Body                              | Metadata                |
 | ----------- | --------------------------------- | ----------------------- |
 | Chapters    | `src/book/chapters/<slug>.html`   | `src/data/chapters.json`|
-| Blog posts  | `src/book/posts/<slug>.html`      | `src/data/posts.json`   |
 | Info pages  | `src/book/pages/<slug>.html`      | `src/data/pages.json`   |
 
 Internal links and images inside the stored HTML use a `__BASE__/…` placeholder that
@@ -78,7 +75,9 @@ npm run migrate          # re-fetch from the WordPress.com public API and rewrit
 npm run verify:verbatim  # assert no prose was added or altered vs. the originals
 ```
 
-The migration is re-runnable and idempotent (already-downloaded images are skipped).
+> **Note:** the published content has since been hand-curated (illustrations removed, the
+> C / D / E♭ interludes added, some copy edited). Re-running the migration re-fetches the
+> original WordPress content and would overwrite those edits — only do it for a fresh import.
 
 ### Adding a chapter (e.g. Volume Two)
 
@@ -90,6 +89,9 @@ The migration is re-runnable and idempotent (already-downloaded images are skipp
    ```
 3. That's it — the reader route, Prev/Next, and the Table of Contents update automatically,
    and a **Volume Two** section appears once any `volume: 2` chapters exist.
+
+For a lettered interlude (like C / D / E♭), set `"number": null` and `"interlude": true`;
+the Table of Contents shows a ♪ instead of a number.
 
 ## Deployment (GitHub Pages)
 
@@ -119,6 +121,6 @@ keyboard operation (including ← / → page turns), AA color contrast in both t
 
 ## Credits & license
 
-Story and artwork © Volta Volgate & Rowan Westmoreland, licensed under
+Story © Volta Volgate, licensed under
 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) — unchanged from the
 original. The site's code is free to reuse.

@@ -189,6 +189,30 @@
     "volume": 1
   },
   {
+    "slug": "c",
+    "number": null,
+    "title": "C",
+    "dateline": "13:13 · Monday the 12th · Lunar 9, Cascade 33 — Sixteen Years Ago · The Trinity Celeste Vacation Resort of the Lumerian Royal Family · The Beach",
+    "volume": 1,
+    "interlude": true
+  },
+  {
+    "slug": "d",
+    "number": null,
+    "title": "D",
+    "dateline": "19:30 · Wednesday the 14th · Lunar 9, Cascade 33 — Sixteen Years Ago · The Trinity Celeste Vacation Resort of the Lumerian Royal Family · Living Quarters",
+    "volume": 1,
+    "interlude": true
+  },
+  {
+    "slug": "e-flat",
+    "number": null,
+    "title": "E♭",
+    "dateline": "08:00 · Thursday the 1st · Lunar 10, Cascade 33 — Sixteen Years Ago · Port Helsingin · Bayside Senate Building · Monday the 13th — Present Day, Present Time · Lunar 4, Luka 16 · Onboard The Neptune’s Rhapsody · Somewhere in the Dimensional Divide",
+    "volume": 1,
+    "interlude": true
+  },
+  {
     "slug": "chapter-twenty-eight",
     "number": 28,
     "title": "Chapter Twenty-Eight",

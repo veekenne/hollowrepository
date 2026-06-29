@@ -64,9 +64,16 @@ async function run() {
   const pageMap = bySlug(pages);
 
   const jobs = [];
+  // Interludes were saved under clean slugs; map them back to their raw source slug.
+  const rawAlias = { 'e-flat': 'e%e2%99%ad' };
   const chapters = JSON.parse(await readFile(path.join(ROOT, 'src/data/chapters.json'), 'utf8'));
   for (const c of chapters) {
-    jobs.push({ kind: 'chapter', slug: c.slug, src: pageMap.get(c.slug), dir: 'src/book/chapters' });
+    jobs.push({
+      kind: 'chapter',
+      slug: c.slug,
+      src: pageMap.get(c.slug) ?? pageMap.get(rawAlias[c.slug]),
+      dir: 'src/book/chapters',
+    });
   }
 
   let failures = 0;

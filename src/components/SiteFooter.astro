@@ -1,16 +1,16 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE, AUTHORS, NAV, withBase } from '../lib/site';
+import { SITE_TITLE, AUTHORS, NAV, withBase } from '../lib/site';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="flow" style="max-width: 32rem;">
-      <p><strong>{SITE_TITLE}</strong> — {SITE_TAGLINE}</p>
-      <p>Written by {AUTHORS.writer}. Illustrated by {AUTHORS.illustrator}.</p>
+      <p><strong>{SITE_TITLE}</strong></p>
+      <p>Written by {AUTHORS.writer}.</p>
       <p style="font-size: var(--text-xs); color: var(--text-faint);">
         Story licensed under
         <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener">CC BY-NC-ND 4.0</a>.
-        © {year} {AUTHORS.writer} &amp; {AUTHORS.illustrator}.
+        © {year} {AUTHORS.writer}.
       </p>
     </div>
     <nav aria-label="Footer">

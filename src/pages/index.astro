@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { withBase, SITE_TAGLINE } from '../lib/site';
+import { withBase } from '../lib/site';
 ---
 <BaseLayout>
   <section class="home-hero">
     <div class="container home-hero__grid">
       <div class="home-hero__text">
-        <p class="tagline">{SITE_TAGLINE}</p>
         <h1>Hollow Reign</h1>
         <p class="summary">
           The story of an accidental queer space pirate kid turned fake princess
@@ -35,7 +34,7 @@ import { withBase, SITE_TAGLINE } from '../lib/site';
     <div class="grid dive-grid">
       <a class="card" href={withBase('/chapter-one/')}>
         <h3>Volume One</h3>
-        <p>Thirty-three chapters. Start from the beginning and read straight through the night.</p>
+        <p>The complete first volume. Start from the beginning and read straight through the night.</p>
         <span class="card-cta">Begin Chapter One →</span>
       </a>
       <a class="card" href={withBase('/volume-two/')}>
@@ -60,7 +59,7 @@ import { withBase, SITE_TAGLINE } from '../lib/site';
       if (d && d.slug) {
         el.setAttribute('href', BASE.replace(/\/$/, '') + '/' + d.slug + '/');
         const span = el.querySelector('span');
-        if (span) span.textContent = d.number ? `Continue · Chapter ${d.number}` : 'Continue reading';
+        if (span) span.textContent = d.title ? `Continue · ${d.title}` : 'Continue reading';
         el.hidden = false;
       }
     }

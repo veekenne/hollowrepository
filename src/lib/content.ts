@@ -32,10 +32,12 @@ const pageBodies = indexBySlug(pageHtml);
 
 export interface Chapter {
   slug: string;
-  number: number;
+  /** Chapter number, or null for lettered interludes (C / D / E♭). */
+  number: number | null;
   title: string;
   dateline: string;
   volume: number;
+  interlude?: boolean;
 }
 export interface PageMeta {
   slug: string;

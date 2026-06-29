@@ -4,21 +4,19 @@
  */
 
 export const SITE_TITLE = 'Hollow Reign';
-export const SITE_TAGLINE = 'A Queer Space Saga for All';
 export const SITE_DESCRIPTION =
-  'Hollow Reign is a free, serialized illustrated novel — a queer space saga for all. ' +
-  'The story of an accidental queer space pirate kid turned fake princess changing the Worlds, one lie at a time.';
+  'Hollow Reign is a free, serialized story of an accidental queer space pirate kid ' +
+  'turned fake princess changing the Worlds, one lie at a time.';
 
 export const AUTHORS = {
   writer: 'Volta Volgate',
-  illustrator: 'Rowan Westmoreland',
 };
 
 /** Primary navigation. Hrefs are app-absolute (leading slash); pass through withBase() when rendering. */
 export const NAV: { label: string; href: string }[] = [
   { label: 'Contents', href: '/table-of-contents/' },
   { label: 'About the Project', href: '/about-the-project/' },
-  { label: 'Creators', href: '/about-us/' },
+  { label: 'Creator', href: '/about-us/' },
 ];
 
 /**

@@ -3,14 +3,19 @@ import ReaderLayout from '../layouts/ReaderLayout.astro';
 import { CHAPTERS, getChapterHtml, getChapterNeighbors, type Chapter } from '../lib/content';
 
 export function getStaticPaths() {
-  return CHAPTERS.map((chapter) => ({
+  const total = CHAPTERS.length;
+  return CHAPTERS.map((chapter, i) => ({
     params: { chapter: chapter.slug },
-    props: { chapter },
+    props: { chapter, position: i + 1, total },
   }));
 }
 
-const { chapter } = Astro.props as { chapter: Chapter };
+const { chapter, position, total } = Astro.props as {
+  chapter: Chapter;
+  position: number;
+  total: number;
+};
 const html = getChapterHtml(chapter.slug);
 const { prev, next } = getChapterNeighbors(chapter.slug);
 ---
-<ReaderLayout chapter={chapter} html={html} prev={prev} next={next} />
+<ReaderLayout chapter={chapter} html={html} prev={prev} next={next} position={position} total={total} />

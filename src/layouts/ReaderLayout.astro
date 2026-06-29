@@ -4,15 +4,17 @@ import Prose from '../components/Prose.astro';
 import ChapterNav from '../components/ChapterNav.astro';
 import Icon from '../components/Icon.astro';
 import { withBase } from '../lib/site';
-import { TOTAL_CHAPTERS, volumeName, type Chapter } from '../lib/content';
+import { volumeName, type Chapter } from '../lib/content';
 
 interface Props {
   chapter: Chapter;
   html: string;
   prev: Chapter | null;
   next: Chapter | null;
+  position: number;
+  total: number;
 }
-const { chapter, html, prev, next } = Astro.props;
+const { chapter, html, prev, next, position, total } = Astro.props;
 const description = chapter.dateline
   ? `${chapter.title} — ${chapter.dateline}`
   : `${chapter.title} of Hollow Reign, a queer space saga.`;
@@ -26,7 +28,7 @@ const description = chapter.dateline
         <Icon name="list" size={18} /> Contents
       </a>
       <span class="spacer"></span>
-      <span class="reader-count" aria-hidden="true">{chapter.number} / {TOTAL_CHAPTERS}</span>
+      <span class="reader-count" aria-hidden="true">{position} / {total}</span>
       <div class="reader-settings">
         <button
           class="icon-btn"

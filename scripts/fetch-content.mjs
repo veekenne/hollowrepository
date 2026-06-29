@@ -18,7 +18,7 @@
 import { mkdir, writeFile, readdir, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parse } from 'node-html-parser';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -136,7 +136,7 @@ function unifyDateline(root) {
   if (!firstP) return;
   const inner = firstP.innerHTML;
   if (!/<br\s*\/?>/i.test(inner)) return;
-  if (!/Luka\s*\d/i.test(firstP.text)) return; // in-world year marker
+  if (!/Lunar\s*\d/i.test(firstP.text)) return; // in-world dateline marker
   const lines = inner
     .split(/<br\s*\/?>/i)
     .map((s) => s.trim())
@@ -171,7 +171,7 @@ function rewriteHref(href, postSlugs) {
   return `__BASE__/${segs.join('/')}/`;
 }
 
-async function cleanHtml(html, { postSlugs }) {
+export async function cleanHtml(html, { postSlugs }) {
   // Always normalize: wpautop wraps bare-text runs in <p> while leaving existing
   // block elements (Gutenberg <p>, <figure>, <img>, <h6>…) untouched. This fixes
   // Classic-editor chapters that arrive as bare text, including mixed content.
@@ -242,7 +242,7 @@ async function cleanHtml(html, { postSlugs }) {
   return root.toString().trim();
 }
 
-function extractDateline(html) {
+export function extractDateline(html) {
   const root = parse(html);
   let lines = root
     .querySelectorAll('p.dateline')
@@ -338,7 +338,10 @@ async function main() {
   console.log(`\nDone. ${chapterManifest.length} chapters, ${pageManifest.length} pages, ${imgs.length} images vendored.`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+const isDirectRun = import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

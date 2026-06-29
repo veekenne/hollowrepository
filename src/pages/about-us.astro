@@ -5,6 +5,6 @@ import { getPageHtml, getPageMeta } from '../lib/content';
 const slug = 'about-us';
 const meta = getPageMeta(slug);
 ---
-<PageLayout title={meta?.title ?? 'About the Creators'} eyebrow="The People">
+<PageLayout title={meta?.title ?? 'About the Creator'} eyebrow="The Writer">
   <Prose html={getPageHtml(slug)} />
 </PageLayout>
